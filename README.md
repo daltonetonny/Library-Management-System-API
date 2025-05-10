@@ -1,69 +1,137 @@
-Library Management System API
-Project Description
-This project implements a Library Management System with a MySQL database and a CRUD API built using Python and FastAPI. The system manages books, members, categories, and loans, with a focus on book-related CRUD operations in the API.
-Features
+# Library Management System
 
-MySQL database with tables for Books, Members, Categories, Book_Categories, and Loans
-RESTful API for CRUD operations on Books
-Input validation using Pydantic models
-Proper error handling for database operations
+A simple library management system that allows managing books, members, and loan records. The system uses a MySQL database to store the data and provides basic functionalities such as adding books, adding members, loaning books, returning books, and listing books and loans.
 
-Setup Instructions
-Prerequisites
+## Features
 
-Python 3.8+
-MySQL Server
-Git
+- **Books Management**: Add new books, list books, and manage book details.
+- **Members Management**: Add new members and store member information.
+- **Loans Management**: Loan books to members, return books, and list current loans.
+- **Categories**: Categorize books into different genres.
 
-Installation
+## Database Schema
 
-Clone the repository:
+The system uses the following tables:
 
-git clone https://github.com/yourusername/library-management-api.git
-cd library-management-api
+1. **categories**: Stores categories of books (e.g., Fiction, Non-Fiction).
+2. **books**: Stores book details like title, author, ISBN, and category.
+3. **members**: Stores member details (name, email).
+4. **loans**: Stores information about book loans, linking books to members.
 
+## Setup Instructions
 
-Create a virtual environment and install dependencies:
+### Prerequisites
 
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install fastapi uvicorn mysql-connector-python
+- **MySQL Server**: Make sure MySQL is installed and running on your machine.
+- **Python 3.8+**: The system uses Python for running the scripts (if you're planning to extend it).
+- **MySQL Connector for Python**: Required to interact with the MySQL database.
 
+### Installation
 
-Set up the MySQL database:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/library-management-system.git
+   cd library-management-system
 
+  
+  
+    
 
-Create a MySQL database named library_management
-Import the SQL script:
+    
 
+Set up MySQL Database:
+
+Run the provided SQL script to create the database and tables:
+
+sql
+Copy
+Edit
+-- Create the library_management database
+CREATE DATABASE IF NOT EXISTS library_management;
+
+-- Switch to the library_management database
+USE library_management;
+
+-- Create the tables (Categories, Books, Members, Loans)
+-- Run the provided SQL script here.
+
+  
+  
+    
+
+    
+
+You can import the SQL file directly into MySQL using:
+
+bash
+Copy
+Edit
 mysql -u your_username -p library_management < library_management.sql
 
+  
+  
+    
 
-Update the database configuration in main.py with your MySQL credentials
+    
 
+Set up Python Environment (optional for Python-based extensions):
+If you want to extend the functionality using Python scripts, create a Python virtual environment and install dependencies:
 
-Run the application:
+bash
+Copy
+Edit
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install mysql-connector-python
 
-uvicorn main:app --reload
+  
+  
+    
 
+    
 
-Access the API at http://localhost:8000
-API documentation available at http://localhost:8000/docs
+Usage
+Run the System:
 
-Database Schema (ERD)
-Note: Create an ERD using tools like MySQL Workbench or draw.io and save as erd.png
-Project Structure
-library-management-api/
-├── main.py               # FastAPI application
-├── library_management.sql # Database schema and sample data
-├── README.md            # Project documentation
-└── requirements.txt     # Project dependencies
+Use the library_management_system.py script to interact with the system.
 
-API Endpoints
+The script provides a simple CLI interface for managing books, members, and loans.
 
-POST /books/ - Create a new book
-GET /books/ - List all books
-GET /books/{book_id} - Get a specific book
-PUT /books/{book_id} - Update a book
-DELETE /books/{book_id} - Delete a book
+To run the system, use:
 
+bash
+Copy
+Edit
+python library_management_system.py
+
+  
+  
+    
+
+    
+
+Available Commands:
+The system will display a menu with the following options:
+
+Add Book: Add a new book to the library.
+
+List Books: View all books in the library.
+
+Add Member: Add a new member to the system.
+
+Loan Book: Loan a book to a member.
+
+Return Book: Return a loaned book.
+
+List Loans: View all current loans.
+
+Exit: Exit the system.
+
+Sample Data:
+The system includes sample data for categories, books, members, and loans. You can modify or add more data using the provided interface.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Contributing
+Feel free to fork this project, create issues, or submit pull requests to improve the functionality. Contributions are welcome!
